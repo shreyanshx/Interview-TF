@@ -1,9 +1,14 @@
 name: Terraform
-on: [push]
+on:
+  pull_request:
+  push:
+    branches: [main]
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
-      - run: terraform fmt -check
+      - run: terraform fmt -check -recursive
+      - run: terraform -chdir=environments/prod init -backend=false
+      - run: terraform -chdir=environments/prod validate

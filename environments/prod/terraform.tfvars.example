@@ -1,1 +1,3 @@
-region="ap-south-1"
+region = "ap-south-1"
+certificate_arn = "arn:aws:acm:ap-south-1:123456789012:certificate/replace-me"
+budget_notification_email = "operations@example.com"
